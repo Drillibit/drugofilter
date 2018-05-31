@@ -15,17 +15,24 @@ export default function friendsState (data) {
         state.foundedFriends = state.rawData
         state.addedFriends = state.rawData
     }
+    //displaying friends
     addFriends(state);
-    // state.foundedFriends.forEach(fr => {
-    //     let fromFounded = true;
-    //     let kid = addFriend(fr, fromFounded);
-    //     founded.appendChild(kid);
-    // })
 
-    // state.addedFriends.forEach(fr => {
-    //     let fromFounded = false;
-    //     let kid = addFriend(fr, fromFounded);
-    //     founded.appendChild(kid);
-    // })
+    friendsContainer.addEventListener('click', (e) => {
+        let elem = e.target.parentNode;
+        if (e.target.classList[1] === 'fa-times') {
+            e.target.classList.remove('fa-times');
+            e.target.classList.add('fa-plus');
+            added.removeChild(elem);
+            founded.insertBefore(elem, founded.firstChild);
+        } else if (e.target.classList[1] === 'fa-plus') {
+            e.target.classList.remove('fa-plus');
+            e.target.classList.add('fa-times');
+            founded.removeChild(e.target.parentNode);
+            added.insertBefore(elem, added.firstChild);
+        }
+
+    })
+
 
 }
