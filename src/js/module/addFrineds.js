@@ -10,6 +10,6 @@ export default function addFriends (state) {
         state.addedFriends.forEach(fr => {
             let fromFounded = false;
             let kid = addFriend(fr, fromFounded);
-            founded.appendChild(kid);
+            added.appendChild(kid);
         })
 }

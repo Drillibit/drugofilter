@@ -21,36 +21,13 @@
             <input class="search_input" type="text">
         </form>
         <div class="friends_container">
-            <div id="founded"></div> 
-            <div id="added"></div>
+            <div id="founded" class="drop-zone"></div> 
+            <div id="added" class="drop-zone"></div>
         </div>
         <div class="frame_b">
             <button class="btn">Сохранить</button>
         </div>
     </div>
-
-    <script id="fr" type="text/x-handlebars-template">
-        <div class="friends">
-            {{#each foundedFriends}}
-            <div class="friend">
-                <img src="{{photo_100}}"/>
-                <div>{{first_name}} {{last_name}}</div>
-                <i class="fas fa-plus"></i>
-            </div>
-            {{/each}}
-        </div>
-    </script>
-    <script id="add" type="text/x-handlebars-template">
-        <div class="friends">
-            {{#each addedFriends}}
-            <!-- <div class="friend">
-                <img src="{{photo_100}}" />
-                <div>{{first_name}} {{last_name}}</div>
-                <i class="fas fa-times"></i>
-            </div> -->
-            {{/each}}
-        </div>
-    </script>
 </body>
 
 </html>
