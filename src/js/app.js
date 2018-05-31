@@ -1,4 +1,5 @@
 import '../css/style.sass'
+import friendsState from './module/friendsState';
 
 
 VK.init({
@@ -42,12 +43,10 @@ function callAPI(method, params) {
         const friends = await callAPI('friends.get', {
             fields: 'city, country, photo_100'
         });
-        const template = document.querySelector('#fr').textContent;
-        const render = Handlebars.compile(template);
-        const html = render(friends);
-        const results = document.querySelector('#founded');
+        // console.log(friends);
+        const stateData = friendsState(friends)
 
-        results.innerHTML = html;
+
     } catch (e) {
         console.error(e);
     }
