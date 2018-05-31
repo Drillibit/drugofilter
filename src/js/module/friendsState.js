@@ -45,8 +45,15 @@ export default function friendsState (data) {
 
     document.addEventListener('drop', (e) => {
         if (currentDrag) {
+            let elem = currentDrag.node.lastChild;
             const zone = getCurrentZone(e.target);
-
+             if (elem.classList[1] === 'fa-times') {
+                 elem.classList.remove('fa-times');
+                 elem.classList.add('fa-plus');
+             } else if (elem.classList[1] === 'fa-plus') {
+                 elem.classList.remove('fa-plus');
+                 elem.classList.add('fa-times');
+             }
             e.preventDefault();
 
             if (zone && currentDrag.startZone !== zone) {
