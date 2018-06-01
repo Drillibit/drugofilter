@@ -1,26 +1,44 @@
-import addFriends from './addFrineds';
 import moveFriend from './moveFriend';
+import displayFriends from './displayFriends';
+import addFriend from './friend';
 export default function friendsState (data) {
     // console.log(data.items);
 
     const state = {
         rawData: data.items,
         foundedFriends: [],
-        addedFriends: []
+        addedFriends: [],
     }
     const friendsContainer = document.querySelector('.friends_container');
-    const founded = document.getElementById('founded');
-    const added = document.getElementById('added');
+    const foundedFriends = document.getElementById('founded');
+    const addedFriends = document.getElementById('added');
+    const addedInput = document.getElementById('added_input')
+    const foundInput = document.getElementById('found_input')
 
     if (state.foundedFriends.length === 0 || state.addedFriends.length === 0) {
-        state.foundedFriends = state.rawData
+        data.items.forEach(el => {
+            state.foundedFriends.push(addFriend(el, true));
+            displayFriends(state, false, foundedFriends);
+        })
     }
+    console.log(state);
     //displaying friends
-    addFriends(state);
+ 
+   
+
+    addedInput.addEventListener('keyup', (e) => {
+        added.innerHTML = '';
+        displayFriends(state, e.target.value, added);
+    })
+
+    foundInput.addEventListener('keyup', (e) => {
+        founded.innerHTML = '';
+        displayFriends(state, e.target.value, founded);
+    })
     //moving friends
     friendsContainer.addEventListener('click', (e) => {
         let elem = e.target;
-        moveFriend(elem, founded, added);
+        moveFriend(elem, founded, added, state);
     })
     //dragging friends
     let currentDrag;

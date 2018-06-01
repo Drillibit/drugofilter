@@ -1,15 +1,7 @@
-import addFriend from './friend';
-export default function addFriends (state) {
-    //как бы это дело сократить
-        state.foundedFriends.forEach(fr => {
+export default function addFriends (data, target) {
+    for (let fr of data) {
             let fromFounded = true;
-            let kid = addFriend(fr, fromFounded);
-            founded.appendChild(kid);
-        })
-
-        state.addedFriends.forEach(fr => {
-            let fromFounded = false;
-            let kid = addFriend(fr, fromFounded);
-            added.appendChild(kid);
-        })
+            target.innerHtml = '';
+            target.appendChild(fr);
+    }
 }
