@@ -5,12 +5,25 @@
     max-height: 400px
     display: flex
     flex-direction: row
-    padding: 10px 15px
     background-color: #fff
 
 #found
     +col
-    border-right: 1px solid lightgray
+    position: relative
+    &:after
+        content: ""
+        background: lightgray
+        position: absolute
+        bottom: 2.5%
+        right: 0
+        height: 95%
+        margin: auto 0
+        width: 1px
+
+        
+
+    // border-right: 1px solid lightgray
+    // border-: 90%
 
 #added
     +col
