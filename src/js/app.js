@@ -1,5 +1,6 @@
 import '../css/style.sass'
-import friendsState from './module/friendsState';
+import FriendsMain from './module/FriendsMain';
+import items from './info';
 
 
 VK.init({
@@ -43,8 +44,8 @@ function callAPI(method, params) {
         const friends = await callAPI('friends.get', {
             fields: 'city, country, photo_100'
         });
-        // console.log(friends);
-        const stateData = friendsState(friends)
+        
+        const stateData = FriendsMain(friends);
 
 
     } catch (e) {
