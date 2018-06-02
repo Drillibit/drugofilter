@@ -46,7 +46,6 @@ export default function FriendsMain (data) {
             let info = JSON.parse(fr);
             dataLocal.found.push(JSON.parse(info));
         });
-        console.log(dataLocal)
         populate(dataLocal.found, found, true);
         populate(dataLocal.added, added, false);
     }
@@ -136,7 +135,7 @@ export default function FriendsMain (data) {
 
     document.addEventListener('drop', (e) => {
         if (currentDrag) {
-            let elem = currentDrag.node.lastChild;
+            const elem = currentDrag.node.lastChild;
             const zone = getCurrentZone(e.target);
             if (elem.classList[1] === 'fa-times') {
                 elem.classList.remove('fa-times');
@@ -146,8 +145,13 @@ export default function FriendsMain (data) {
                 elem.classList.add('fa-times');
             }
             e.preventDefault();
-
-            zone.insertBefore(currentDrag.node, zone.firstChild);
+            if (e.target.classList[0] === 'friend') {
+                zone.insertBefore(currentDrag.node, e.target);
+            } else if (e.target.parentNode.classList[0] === 'friend') {
+                zone.parentNode.insertBefore(currentDrag.node, e.target.parentNode);
+            } else {
+                zone.insertBefore(currentDrag.node, zone.firstChild);
+            }
 
             currentDrag = null;
         }
