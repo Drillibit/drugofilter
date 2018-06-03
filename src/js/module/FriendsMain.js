@@ -138,18 +138,20 @@ export default function FriendsMain (data) {
         if (currentDrag) {
             let elem = currentDrag.node.lastChild;
             const zone = getCurrentZone(e.target);
-            if (elem.classList[1] === 'fa-times') {
-                elem.classList.remove('fa-times');
-                elem.classList.add('fa-plus');
-            } else if (elem.classList[1] === 'fa-plus') {
-                elem.classList.remove('fa-plus');
-                elem.classList.add('fa-times');
+            if (zone && currentDrag.startZone !== zone) {
+                if (elem.classList[1] === 'fa-times') {
+                    elem.classList.remove('fa-times');
+                    elem.classList.add('fa-plus');
+                } else if (elem.classList[1] === 'fa-plus') {
+                    elem.classList.remove('fa-plus');
+                    elem.classList.add('fa-times');
+                }
+                e.preventDefault();
+
+                zone.insertBefore(currentDrag.node, zone.firstChild);
+
+                currentDrag = null;
             }
-            e.preventDefault();
-
-            zone.insertBefore(currentDrag.node, zone.firstChild);
-
-            currentDrag = null;
         }
     });
 
